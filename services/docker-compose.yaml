@@ -1,0 +1,8 @@
+services:
+  main-app:
+    env_file:
+      - ./.env
+    build:
+      dockerfile: Dockerfile_ml_service
+    ports:
+      - "${MAIN_APP_PORT}:${MAIN_APP_PORT}"  

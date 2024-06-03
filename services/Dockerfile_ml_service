@@ -1,0 +1,5 @@
+FROM python:3.11-slim
+LABEL author=${AUTHOR}
+COPY . ./ml_service
+WORKDIR ml_service
+RUN pip3 install -r requirements_main.txt
