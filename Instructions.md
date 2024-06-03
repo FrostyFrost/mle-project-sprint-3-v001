@@ -21,6 +21,33 @@ cd ml_service
 uvicorn main:app
 ```
 
+Сервис принимает запросы на endpoint /api/get_prediction/
+
+Пример запроса:
+```
+curl -X 'POST' \
+  'http://localhost:8000/api/get_prediction/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "flat_id": 10769,
+  "floor": 9,
+  "is_apartment": "false",
+  "kitchen_area": 8.946669,
+  "living_area": 33,
+  "rooms": 2,
+  "total_area": 43.900002,
+  "building_id": 4431,
+  "build_year": 1962,
+  "building_type_int": 4,
+  "latitude": 55.705067,
+  "longitude": 37.763611,
+  "ceiling_height": 2.64,
+  "flats_count": 72,
+  "floors_total": 9,
+  "has_elevator": "true"
+}'
+```
 
 ### 2. FastAPI микросервис в Docker-контейнере
 ...
