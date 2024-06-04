@@ -12,7 +12,8 @@ sudo apt-get install python3.10-venv
 python3.10 -m venv .venv_sprint03
 source .venv_sprint03/bin/activate
 
-pip install -r services/requirements.txt 
+cd services
+pip install -r requirements.txt 
 ```
 Запустить сервис 
 
@@ -79,5 +80,16 @@ docker compose up --build
 
 `commit: port from env`
 ### 3. Запуск сервисов для системы мониторинга
+Порты:
+* ml_service: 8080 
+* prometheus: 9090
+* grafana: 3000
+
+Запуск командой 
+```
+docker compose up --build
+```
+
+
 
 ### 4. Построение дашборда для мониторинга
