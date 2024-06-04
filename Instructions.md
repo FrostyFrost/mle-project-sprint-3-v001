@@ -77,6 +77,7 @@ docker stop <hash>
 docker compose up --build
 ```
 
+`commit: port from env`
 ### 3. Запуск сервисов для системы мониторинга
 
 ### 4. Построение дашборда для мониторинга

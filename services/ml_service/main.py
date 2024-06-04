@@ -2,9 +2,25 @@
 from fastapi import FastAPI, Body
 from ml_service.fast_api_handler import FastApiHandler
 
+from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_client import Histogram
+
 # создаём экземпляр FastAPI приложения
 app = FastAPI()
 app.handler=FastApiHandler()
+
+# Export metrics
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
+
+main_app_predictions = Histogram(
+    # имя метрики
+    "main_app_predictions",
+    #описание метрики
+    "Histogram of predictions",
+    #указаываем корзины для гистограммы
+    buckets=(1, 2, 4, 5, 10)
+)
 
 # обрабатываем запросы к корню приложения
 @app.get("/")
@@ -40,4 +56,5 @@ def get_prediction_for_item(
     all_params = {
         "model_features": model_features
     }
+
     return app.handler.handle(all_params)

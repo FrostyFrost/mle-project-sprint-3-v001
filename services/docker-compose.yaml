@@ -6,3 +6,14 @@ services:
       dockerfile: Dockerfile_ml_service
     ports:
       - "${MAIN_APP_PORT}:${MAIN_APP_PORT}"  
+    hostname: main_app
+
+  prometheus:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    hostname: prometheus
