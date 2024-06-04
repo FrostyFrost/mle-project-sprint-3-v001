@@ -26,7 +26,7 @@ uvicorn ml_service.main:app
 Пример запроса:
 ```
 curl -X 'POST' \
-  'http://localhost:8000/api/get_prediction/' \
+  'http://localhost:8080/api/get_prediction/' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -90,6 +90,8 @@ docker compose up --build
 docker compose up --build
 ```
 
-
-
 ### 4. Построение дашборда для мониторинга
+Скрипт для проверки загрузки сервера. Отрабатывает примерно в течение 2 минут.
+```
+ python3 test_requests.py 
+```

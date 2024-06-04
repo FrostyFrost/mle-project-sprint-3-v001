@@ -136,6 +136,7 @@ class FastApiHandler:
                 #print(list(model_features.values()))
                 
                 score = self.model_predict(model_features)
+                print(f"score for flat:\n{score}")
                 response = {
                     "flat_id": model_features['flat_id'], 
                     "score": score

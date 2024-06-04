@@ -3,7 +3,7 @@ from fastapi import FastAPI, Body
 from ml_service.fast_api_handler import FastApiHandler
 
 from prometheus_fastapi_instrumentator import Instrumentator
-from prometheus_client import Histogram
+from prometheus_client import Histogram, Counter
 
 # создаём экземпляр FastAPI приложения
 app = FastAPI()
@@ -19,8 +19,10 @@ main_app_predictions = Histogram(
     #описание метрики
     "Histogram of predictions",
     #указаываем корзины для гистограммы
-    buckets=(1, 2, 4, 5, 10)
+    buckets=(100000, 1000000, 5000000, 10000000, 20000000, 50000000, 100000000)
 )
+
+main_app_counter_pos = Counter("main_app_counter_pos", "Count of queries")
 
 # обрабатываем запросы к корню приложения
 @app.get("/")
@@ -53,8 +55,10 @@ def get_prediction_for_item(
         }
     )
 ):
+    main_app_counter_pos.inc()
     all_params = {
         "model_features": model_features
     }
-
-    return app.handler.handle(all_params)
+    response = app.handler.handle(all_params)
+    main_app_predictions.observe(response['score'])
+    return response
