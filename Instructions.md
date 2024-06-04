@@ -17,8 +17,7 @@ pip install -r services/requirements.txt
 Запустить сервис 
 
 ```
-cd ml_service
-uvicorn main:app
+uvicorn ml_service.main:app
 ```
 
 Сервис принимает запросы на endpoint /api/get_prediction/
@@ -50,8 +49,33 @@ curl -X 'POST' \
 ```
 
 ### 2. FastAPI микросервис в Docker-контейнере
-...
+#### Docker
+Инструкции Docker содержатся в файле ```Dockerfile_ml_service``` 
 
+Собрать образ 
+```
+docker image build . -f Dockerfile_ml_service --tag estate_predict_service:0
+```
+
+Запускать сервис командой 
+```
+docker container run --publish 8080:8080  estate_predict_service:0 
+```
+
+Остановить:
+```
+docker container ps
+```
+Найти нужный hash
+```
+docker stop <hash>
+```
+
+#### Docker compose
+Запуск командой 
+```
+docker compose up --build
+```
 
 ### 3. Запуск сервисов для системы мониторинга
 

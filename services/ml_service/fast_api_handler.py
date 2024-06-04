@@ -15,7 +15,7 @@ class FastApiHandler:
             "model_features": dict
         }
         
-        self.pipeline_path = "../models/pipeline_zero.pkl"
+        self.pipeline_path = "models/pipeline_zero.pkl"
         self.load_pipeline(pipeline_path=self.pipeline_path)
         
         # Необходимые параметры для предсказаний модели оттока

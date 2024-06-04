@@ -1,6 +1,6 @@
 # импортируем класс для создания экземпляра FastAPI приложения
 from fastapi import FastAPI, Body
-from fast_api_handler import FastApiHandler
+from ml_service.fast_api_handler import FastApiHandler
 
 # создаём экземпляр FastAPI приложения
 app = FastAPI()
