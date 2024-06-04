@@ -59,7 +59,7 @@ docker image build . -f Dockerfile_ml_service --tag estate_predict_service:0
 
 Запускать сервис командой 
 ```
-docker container run --publish 8080:8080  estate_predict_service:0 
+docker container run --publish 8080:8080 --env-file=.env estate_predict_service:0 
 ```
 
 Остановить:
